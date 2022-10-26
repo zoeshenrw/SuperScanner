@@ -18,23 +18,32 @@
         <h1 class="form__title">Login</h1>
         <div class="form__message form__message--error"></div>
         <div class="form__input-group">
-          <input type="text" class="form__input" autofocus placeholder = "Phone Number">
+          <input type="text" class="form__input" autofocus placeholder = "Phone Number" required>
           <div class="form__input-error-message"></div>
         </div>
 
         <div class="form__input-group">
-          <input type="password" class="form__input" autofocus placeholder = "Password">
+          <input type="password" class="form__input" autofocus placeholder = "Password" required>
           <div class="form__input-error-message"></div>
         </div>
 
-        <button class="form__button" type="submit">Continue</button>
+        <button class="form__button" type="submit">Login Now</button>
+
+        <div class = "checkbox-text">
+          <div class="checkbox-content">
+            <input type="checkbox" id="logCheck">
+            <label for="logCheck" class ="text">Remember me</label>
+          </div>
+        </div>
+
+
 
         <p class="form__text">
-          <a href="#" class="form__link">Forgot your password?</a>
+          <a class="form__link" href = "./" id = "linkForgotPassword">Forgot your password?</a>
         </p>
 
         <p class="form__text">
-          <a class="form__link" href = "./" id = "linkCreateAccount">Don't have an account? Create account</a>
+          <a class="form__link" href = "./" id = "linkCreateAccount">Don't have an account? Create one now</a>
         </p>
 
       </form>
@@ -78,6 +87,25 @@
         <p class="form__text">
           <a class="form__link" href = "./" id = "linkLogin">Already have an account? Sign in</a>
         </p>
+
+      </form>
+
+      <!--reset password-->
+      <form  class="form form--hidden" id="forgotPassword">
+        <h1 class="form__title">Reset Password</h1>
+        <div class="form__message form__message--error"></div>
+        <div class="form__input-group">
+          <input type="text" class="form__input" autofocus placeholder = "New Password">
+          <div class="form__input-error-message"></div>
+        </div>
+
+        <div class="form__input-group">
+          <input type="password" class="form__input" autofocus placeholder = "Confirm New Password">
+          <div class="form__input-error-message"></div>
+        </div>
+
+        <button class="form__button" type="submit">Continue</button>
+       
 
       </form>
 

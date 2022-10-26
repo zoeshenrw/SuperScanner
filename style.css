@@ -24,14 +24,24 @@ h1{
 p{
   text-align: center;
 }
-.containter{
+
+/*
+.container{
+  position:center;
   width: 400px;
   max-width:400px;
   margin: 1 rem;
   padding: 2 rem;
   box-shadow: 0 0 40px Black(0,0,0,0.2);
-  border-radius: var(--border-radius);
-  background: var(--background);
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 5px 10px rgba(0 0 0 0.1);
+}
+
+*/
+
+.container .form{
+  padding: 30px;
 }
 
 .container,
@@ -131,4 +141,22 @@ p{
 
 .form__link:hover{
   text-decoration: underline;
+}
+
+.checkbox-text{
+  display:flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.checkbox-text .checkbox-content{
+  display:flex;
+  align-items: center;
+}
+
+.checkbox-content input{
+  margin: 0 8px  4px;
+  accent-color: #4070f4;
+  text-align: center;
 }
