@@ -1,3 +1,33 @@
-# SuperScanner
-- The app will mainly focus on shared bikes. Ideally, the user should only register once into our app to have the access of our services. 
-- The app should scan the QR code properly to recognize the bike company and location. It should let the user know "You're trying to unlock (company) bike in (location)
+## File structure
+- 📂 __DatabaseFinalProject__
+   - 📄 [README.md](README.md) <- File Structure Document
+   - 📄 [use_case.md](use_case.md) <- Use case and query document
+   - 📄 [booking_agent.py](booking_agent.py)  <- Agent request handlers
+   - 📄 [run.py](run.py)    <- Entrance program
+   - 📄 [config.py](config.py)  <- Flask Config file
+   - 📄 [customer.py](customer.py)  <- Customer request handlers
+   - 📄 [forms.py](forms.py)  <- Declare flaskWTForm
+   - 📄 [register.py](register.py)  <- Register request handlers
+   - 📄 [staff.py](staff.py)  <- Staff request handlers
+   - 📄 [search.py](search.py)  <- Search request handlers
+   - 📄 [routes.py](staff.py)  <- Misc. request handlers
+   - 📂 __static__  <- Static resources
+     - 📄 [icon.jpeg](static/icon.jpeg)  <- website favicon
+   - 📂 __templates__
+     - 📂 __register__
+       - 📄 [register.html](templates/register/register.html)  <- Register page
+       - 📄 [register_agent.html](templates/register/register_agent.html)  <- Register agent page
+       - 📄 [register_customer.html](templates/register/register_customer.html)  <- Register customer page
+       - 📄 [register_staff.html](templates/register/register_staff.html)  <- Register staff page
+     - 📂 __home__
+       - 📄 [agent_home.html](templates/home/agent_home.html)  <- Agent homepage
+       - 📄 [customer_home.html](templates/home/customer_home.html)  <- Customer homepage
+       - 📄 [home.html](templates/home/home.html)  <- Homepage for users not logged in
+       - 📄 [staff_home.html](templates/home/staff_home.html)  <- Staff homepage
+     - 📂 __includes__
+       - 📄 [flight_purchase.html](templates/includes/flight_purchase.html)  <- Modal for flight purchase
+     - 📄 [base.html](templates/base.html)  <- Layout
+     - 📄 [flight_search.html](templates/flight_search.html)  <- Flight Search page
+     - 📄 [login.html](templates/login.html)  <- Login page
+     - 📄 [search_result.html](templates/search_result.html)  <- Search Result page
+
