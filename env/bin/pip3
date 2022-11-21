@@ -1,4 +1,4 @@
-#!/Users/crystal/Documents/SuperScanner-FinalProject/env/bin/python3
+#!/Users/ocean/Desktop/SuperScanner-FinalProject/env/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys

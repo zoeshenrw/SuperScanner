@@ -4,7 +4,7 @@ from forms import LoginForm
 from flask import session
 import cv2
 import pyzbar.pyzbar as pyzbar
-#import webbrowser
+import webbrowser
 
 camera=cv2.VideoCapture(0)
 global value 
@@ -17,23 +17,17 @@ def read_qr_code(frame):
         return None
 def generate_frames():
     while True:
-        ## read the camera frame
+        # read the camera frame
         success,frame=camera.read()
-        cv2.imshow("Frame", frame)
-        # decoded=pyzbar.decode(frame)
+        #cv2.imshow("Frame", frame)
+        decoded=pyzbar.decode(frame)
         if not success:
             break
-        # else:
-        #     for obj in decoded:
-        #         if len(obj)>=1:
-        #             webbrowser.open(obj.data.decode('utf-8'))
-        #             break
         else:
             value = read_qr_code(frame)
             if value:
-                print(value)
-                # webbrowser.open(value)
-                # break
+                webbrowser.open(value)
+                break
             ret,buffer=cv2.imencode('.jpg',frame)
             frame=buffer.tobytes()
         yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
