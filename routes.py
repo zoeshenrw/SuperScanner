@@ -2,31 +2,41 @@ from config import app, conn
 from flask import render_template, redirect, url_for, flash, request, Response
 from forms import LoginForm
 from flask import session
-# import cv2
-# import pyzbar.pyzbar as pyzbar
+import cv2
+import pyzbar.pyzbar as pyzbar
+#import webbrowser
 
-# camera=cv2.VideoCapture(0)
-# global value 
-# def read_qr_code(frame):
-#     try:
-#         detect = cv2.QRCodeDetector()
-#         value, points, straight_qrcode = detect.detectAndDecode(frame)
-#         return value
-#     except:
-#         return None
-# def generate_frames():
-#     while True:
-#         ## read the camera frame
-#         success,frame=camera.read()
-#         if not success:
-#             break
-#         else:
-#             value = read_qr_code(frame)
-#             if value:
-#                 print(value)
-#             ret,buffer=cv2.imencode('.jpg',frame)
-#             frame=buffer.tobytes()
-#         yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+camera=cv2.VideoCapture(0)
+global value 
+def read_qr_code(frame):
+    try:
+        detect = cv2.QRCodeDetector()
+        value, points, straight_qrcode = detect.detectAndDecode(frame)
+        return value
+    except:
+        return None
+def generate_frames():
+    while True:
+        ## read the camera frame
+        success,frame=camera.read()
+        cv2.imshow("Frame", frame)
+        # decoded=pyzbar.decode(frame)
+        if not success:
+            break
+        # else:
+        #     for obj in decoded:
+        #         if len(obj)>=1:
+        #             webbrowser.open(obj.data.decode('utf-8'))
+        #             break
+        else:
+            value = read_qr_code(frame)
+            if value:
+                print(value)
+                # webbrowser.open(value)
+                # break
+            ret,buffer=cv2.imencode('.jpg',frame)
+            frame=buffer.tobytes()
+        yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
 @app.route('/')
@@ -42,19 +52,21 @@ def about_page():
 def scanner_page():
     return render_template('scanner.html')
 
-# @app.route('/scanned')
-# def scanned_page():  
-#     try:  
-#         return redirect(value)
-#     except:
-#         return redirect(url_for("video"))
+@app.route('/scanned')
+#return value if works, return video if not
+#need to return the correct website if works
+def scanned_page():  
+    try:  
+        return redirect(value)
+    except:
+        return redirect(url_for("video"))
 
-# @app.route('/video',methods=['GET'])
-# def video():
-#     try: 
-#         return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
-#     except:
-#         return redirect(url_for("scanned_page"))
+@app.route('/video',methods=['GET'])
+def video():
+    try: 
+        return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
+    except:
+        return redirect(url_for("scanned_page"))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():

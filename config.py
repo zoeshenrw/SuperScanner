@@ -16,6 +16,7 @@ conn = sql.connect(host='127.0.0.1',
                    db='ScannerDB',
                    unix_socket='/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock',
                    charset='utf8mb4',
-                   cursorclass=pymysql.cursors.DictCursor)
+                   cursorclass=pymysql.cursors.DictCursor
+                )
 from register import register_bp
 app.register_blueprint(register_bp, url_prefix="/register")
