@@ -6,17 +6,15 @@
 {% block content %}
     <body class="text-center">
         <div class="container">
-            <img src="/static/smallerlogo.png" alt="Logo" style="height: 10%; width: 10%;">
+            <img src="/static/smallerlogo.png" alt="Logo" style="height: 10%; width: 10%; padding: 10px;">
             <br></br>
-            <p class="h3 mb-3 font-weight-normal">Scanner Page</p>
-            <p>Welcome to the scanner page. The scanner will appear here after you login.</p> 
-            <p>Place the QR Code in front of the camera to scan it.</p>
-            <p>You will be re-directed to the correct website after scanning.</p>
+            <h1 style="color: #FB8500; font-family: Georgia, serif; font-size: xx-large; font-weight: bold;">Scanner</h1>
+            <p style="text-align: center; color:white; font-family:Georgia, serif; font-size:larger; margin: 50px;">Welcome to the scanner page. The scanner will appear here after you login.
+            <br>
+            Place the QR Code in front of the camera to scan it.
+            <br>
+            You will be re-directed to the correct website after scanning.</p>
         </div>
     </body>
-
-    {% if session.get('apple_id') %}
-            <img src="{{ url_for('video') }}" width="50%" />
-    {% endif %}
 
 {% endblock %}

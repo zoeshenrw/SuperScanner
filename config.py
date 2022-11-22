@@ -7,8 +7,7 @@ from flask_login import LoginManager
 import pymysql as sql
 import pymysql.cursors
 
-from google.cloud.sql.connector import Connector
-
+# from google.cloud.sql.connector import Connector
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ec9439cfc6c796ae20295943'
