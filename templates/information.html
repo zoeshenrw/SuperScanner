@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+    Information
+{% endblock %}
+
+{% block content %}
+    <body class="text-center">
+        <div class="container">
+            <img src="/static/smallerlogo.png" alt="Logo" style="height: 10%; width: 10%;">
+            <br></br>
+            <p class="h3 mb-3 font-weight-normal">Information Page</p>
+            <p>Welcome to the information page. Here you can navigate the bike share companies based on your state.</p> 
+        </div>
+    </body>
+
+    <iframe src="https://createaclickablemap.com/map.php?&id=114450&maplocation=false&online=true" width="900" height="525" style="border: none;"></iframe>
+    <script>
+    if (window.addEventListener){ window.addEventListener("message", function(event) { if(event.data.length >= 22) { if( event.data.substr(0, 22) == "__MM-LOCATION.REDIRECT") location = event.data.substr(22); } }, false); } else if (window.attachEvent){ window.attachEvent("message", function(event) { if( event.data.length >= 22) { if ( event.data.substr(0, 22) == "__MM-LOCATION.REDIRECT") location = event.data.substr(22); } }, false); } 
+    </script>
+
+
+{% endblock %}

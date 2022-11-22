@@ -12,6 +12,14 @@ from google.cloud.sql.connector import Connector
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ec9439cfc6c796ae20295943'
+# cloud database in Google
+# conn=Connector.connect(
+#    "project:region:instance",
+#    "pymysql",
+#    user="root",
+#    password="",
+#    db="ScannerDB"
+# )
 conn = sql.connect(host='127.0.0.1',
                    user='root',
                    password='',

@@ -42,13 +42,19 @@ def home_page():
 def about_page():
     return render_template('about.html')
 
+@app.route('/information')
+def information_page():
+    return render_template('information.html')
+
+@app.route('/pricing')
+def pricing_page():
+    return render_template('pricing.html')
+
 @app.route('/scanner')
 def scanner_page():
     return render_template('scanner.html')
 
 @app.route('/scanned')
-#return value if works, return video if not
-#need to return the correct website if works
 def scanned_page():  
     try:  
         return redirect(value)
