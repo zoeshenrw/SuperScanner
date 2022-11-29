@@ -19,11 +19,21 @@ app.config['SECRET_KEY'] = 'ec9439cfc6c796ae20295943'
 #    password="",
 #    db="ScannerDB"
 # )
-conn = sql.connect(host='127.0.0.1',
-                   user='root',
-                   password='',
-                   db='ScannerDB',
-                   unix_socket='/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock',
+
+#conn = sql.connect(host='127.0.0.1',
+#                   user='root',
+#                   password='',
+#                   db='ScannerDB',
+#                   unix_socket='/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock',
+#                   charset='utf8mb4',
+#                  cursorclass=pymysql.cursors.DictCursor
+#               )
+                
+conn = sql.connect(host='sql9.freesqldatabase.com',
+                   user='sql9581619',
+                   password='zYJJENMhQC',
+                   db='sql9581619',
+                   unix_socket='',
                    charset='utf8mb4',
                    cursorclass=pymysql.cursors.DictCursor
                 )
