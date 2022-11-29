@@ -1,9 +1,6 @@
 from datetime import date, timedelta
 
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
 import pymysql as sql
 import pymysql.cursors
 

@@ -1,6 +1,5 @@
+
 from config import app, conn
-import pymysql as sql
-import pymysql.cursors
 from flask import session
 import register
 import routes
