@@ -2,35 +2,35 @@ from config import app, conn
 from flask import render_template, redirect, url_for, flash, request, Response
 from forms import LoginForm
 from flask import session
-import cv2
-import pyzbar.pyzbar as pyzbar
-import webbrowser
+# import cv2
+# import pyzbar.pyzbar as pyzbar
+# import webbrowser
 
-camera=cv2.VideoCapture(0)
-global value 
-def read_qr_code(frame):
-    try:
-        detect = cv2.QRCodeDetector()
-        value, points, straight_qrcode = detect.detectAndDecode(frame)
-        return value
-    except:
-        return None
-def generate_frames():
-    while True:
-        # read the camera frame
-        success,frame=camera.read()
-        #cv2.imshow("Frame", frame)
-        decoded=pyzbar.decode(frame)
-        if not success:
-            break
-        else:
-            value = read_qr_code(frame)
-            if value:
-                webbrowser.open(value)
-                break
-            ret,buffer=cv2.imencode('.jpg',frame)
-            frame=buffer.tobytes()
-        yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+# camera=cv2.VideoCapture(0)
+# global value 
+# def read_qr_code(frame):
+#     try:
+#         detect = cv2.QRCodeDetector()
+#         value, points, straight_qrcode = detect.detectAndDecode(frame)
+#         return value
+#     except:
+#         return None
+# def generate_frames():
+#     while True:
+#         # read the camera frame
+#         success,frame=camera.read()
+#         #cv2.imshow("Frame", frame)
+#         decoded=pyzbar.decode(frame)
+#         if not success:
+#             break
+#         else:
+#             value = read_qr_code(frame)
+#             if value:
+#                 webbrowser.open(value)
+#                 break
+#             ret,buffer=cv2.imencode('.jpg',frame)
+#             frame=buffer.tobytes()
+#         yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
 @app.route('/')
@@ -45,10 +45,6 @@ def about_page():
 @app.route('/information')
 def information_page():
     return render_template('information.html')
-
-@app.route('/pricing')
-def pricing_page():
-    return render_template('pricing.html')
 
 @app.route('/scanner')
 def scanner_page():
