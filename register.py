@@ -10,7 +10,6 @@ def register_page():
     form = RegisterForm()
     if request.method == "POST":
         if form.validate_on_submit():
-            flash('post', category='success')
             apple_id = form['apple_id'].data
             password = form['password'].data
             cc_number = form['credit_card'].data
