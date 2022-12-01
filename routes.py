@@ -46,6 +46,10 @@ def about_page():
 def information_page():
     return render_template('information.html')
 
+@app.route('/market')
+def market_page():
+    return render_template('market.html')
+
 @app.route('/scanner')
 def scanner_page():
     return render_template('scanner.html')
