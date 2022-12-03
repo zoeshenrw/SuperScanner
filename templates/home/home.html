@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}
     SuperScanner
+    
 {% endblock %}
 {% block content %}
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center" style="color:#023047; background-color: #023047; font-family: Impact, fantasy;">
@@ -46,4 +47,57 @@
     <div>
         
     </div>
+
+    <script>
+      window.onload = () => {
+      if (Notification.permission === "default") {
+        Notification.requestPermission().then(perm => {
+          if (Notification.permission === "granted") {
+            regWorker().catch(err => console.error(err));
+          } else {
+            alert("Please allow notifications.");
+          }
+        });
+      } 
+     
+      else if (Notification.permission === "granted") {
+        regWorker().catch(err => console.error(err));
+      }
+     
+      else { alert("Please allow notifications."); }
+    }
+  </script>
+  
+  <script>
+    // (B) REGISTER SERVICE WORKER
+  async function regWorker () {
+    // (B1) YOUR PUBLIC KEY - CHANGE TO YOUR OWN!
+    const publicKey = "BB13gxL9D3IlmW1AA64sbbVZQQp1DQBy0Rqz0zb-CkEAvjh70B2eB4GvAuvHzKqAlOcrc_JdjBfobhG-wamzNyA";
+   
+    // (B2) REGISTER SERVICE WORKER
+    navigator.serviceWorker.register("sw.js", { scope: "/" });
+   
+    // (B3) SUBSCRIBE TO PUSH SERVER
+    navigator.serviceWorker.ready
+    .then(reg => {
+      reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: publicKey
+      }).then(
+        // (B3-1) OK - TEST PUSH NOTIFICATION
+        sub => {
+          var data = new FormData();
+          data.append("sub", JSON.stringify(sub));
+          fetch("/push", { method:"POST", body:data })
+          .then(res => res.text())
+          .then(txt => console.log(txt))
+          .catch(err => console.error(err));
+        },
+   
+        // (B3-2) ERROR!
+        err => console.error(err)
+      );
+    });
+  }
+  </script>
 {% endblock %}
