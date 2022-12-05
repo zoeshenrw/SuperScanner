@@ -3,6 +3,7 @@
     Register Page
 {% endblock %}
 
+<!-- Registration page -->
 {% block content %}
 <body class="text-center">
     <div class="container">
@@ -16,6 +17,7 @@
             <h1 style="color: #FB8500; font-family: Georgia, serif; font-size: xx-large; font-weight: bold;">Create Your Account</h1>
             <br>
 
+            <!-- User inputs -->
             {{ form.apple_id(class_ = 'form-control first-input', placeholder = form.apple_id.label.text, required = true,
             autofocus = true) }}
             {{ form.password(class_ = 'form-control', placeholder = form.password.label.text, required = true) }}

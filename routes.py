@@ -6,30 +6,35 @@ from forms import LoginForm
 import cv2
 import pyzbar.pyzbar as pyzbar
 import webbrowser
+
+#Notification
 VAPID_SUBJECT = "mailto:aml9186@nyu.edu"
 with open('private_key.json') as pk:
     data = json.load(pk)
 VAPID_PRIVATE = data["public"]
 
+#Scanner
 camera=cv2.VideoCapture(0)
 global value 
 def read_qr_code(frame):
+    # Use cv2 to detect the QR code
     try:
         detect = cv2.QRCodeDetector()
         value, points, straight_qrcode = detect.detectAndDecode(frame)
         return value
     except:
         return None
+
+#Read the camera frame
 def generate_frames():
     while True:
-        # read the camera frame
         success,frame=camera.read()
-        #cv2.imshow("Frame", frame)
         decoded=pyzbar.decode(frame)
         if not success:
             break
         else:
             value = read_qr_code(frame)
+            #Open web browser
             if value:
                 webbrowser.open(value)
                 break
@@ -37,6 +42,7 @@ def generate_frames():
             frame=buffer.tobytes()
         yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
+#Home page
 @app.route('/')
 @app.route('/home')
 def home_page():    
@@ -70,22 +76,27 @@ def push():
     result = "FAILED"
   return result
 
+#About page
 @app.route('/about')
 def about_page():
     return render_template('about.html')
 
+#Information page on clickable maps
 @app.route('/information')
 def information_page():
     return render_template('information.html')
 
+#Market page under information drop down bar
 @app.route('/market')
 def market_page():
     return render_template('market.html')
 
+#Map page with connected API
 @app.route('/map')
 def map_page():
     return render_template('map.html')
 
+#Scanner page
 @app.route('/scanner')
 def scanner_page():
     return render_template('scanner.html')
@@ -104,12 +115,15 @@ def video():
     except:
         return redirect(url_for("scanned_page"))
 
+#Login page
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
+    #If the user is already loggin in
     if session.get('apple_id'):
         flash('Already logged in!', category='danger')
         return redirect(url_for("home_page"))
     form = LoginForm()
+    #Collecting information for user login
     if form.validate_on_submit():
         apple_id = form['apple_id'].data
         password = form['password'].data
@@ -127,6 +141,7 @@ def login_page():
 
     return render_template('login.html', form=form)
 
+#Logout page
 @app.route('/logout')
 def logout_page():
     if session:

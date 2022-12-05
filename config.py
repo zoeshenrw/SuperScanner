@@ -7,6 +7,7 @@ import pymysql.cursors
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ec9439cfc6c796ae20295943'
                 
+#Connecting to the remote database
 conn = sql.connect(host='sql9.freesqldatabase.com',
                    user='sql9581619',
                    password='zYJJENMhQC',

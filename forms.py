@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, HiddenField, SelectField, DateField, IntegerField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 
-
+#Requirement for registration and login
 class RegisterForm(FlaskForm):
     apple_id = StringField(label='Apple ID:', validators=[Email(), DataRequired()])
     password = PasswordField(label='Password:', validators=[Length(min=6, max=50), DataRequired()])

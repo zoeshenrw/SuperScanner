@@ -24,6 +24,7 @@ var map = L.map("map-id", {
 
 streetmap.addTo(map);
 
+// Different categories of stations
 var overlays = {
   "Coming Soon": layers.COMING_SOON,
   "Empty Stations": layers.EMPTY,
@@ -44,6 +45,7 @@ info.onAdd = function() {
 
 info.addTo(map);
 
+// Adding icons
 var icons = {
   COMING_SOON: L.ExtraMarkers.icon({
     icon: "ion-settings",
@@ -77,6 +79,7 @@ var icons = {
   })
 };
 
+// Connecting to APIs provided by Citibike
 d3.json("https://gbfs.citibikenyc.com/gbfs/en/station_information.json").then(function(infoRes) {
 
   d3.json("https://gbfs.citibikenyc.com/gbfs/en/station_status.json").then(function(statusRes) {
@@ -138,6 +141,7 @@ d3.json("https://gbfs.citibikenyc.com/gbfs/en/station_information.json").then(fu
   });
 });
 
+// Updating
 function updateLegend(time, stationCount) {
   document.querySelector(".legend").innerHTML = [
     "<p>Updated: " + moment.unix(time).format("h:mm:ss A") + "</p>",
