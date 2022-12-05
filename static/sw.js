@@ -10,3 +10,8 @@ self.addEventListener("push", evt => {
     image: data.image
   });
 });
+
+self.addEventListener('notificationclick', function(event) {
+  console.log('Notification click Received.');
+  event.notification.close();
+});

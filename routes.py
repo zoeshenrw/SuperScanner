@@ -37,7 +37,6 @@ def generate_frames():
             frame=buffer.tobytes()
         yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-
 @app.route('/')
 @app.route('/home')
 def home_page():    
@@ -83,6 +82,10 @@ def information_page():
 def market_page():
     return render_template('market.html')
 
+@app.route('/map')
+def map_page():
+    return render_template('map.html')
+
 @app.route('/scanner')
 def scanner_page():
     return render_template('scanner.html')
@@ -123,8 +126,6 @@ def login_page():
             flash('AppleID and password are not a match! Please try again', category='danger')
 
     return render_template('login.html', form=form)
-
-    
 
 @app.route('/logout')
 def logout_page():

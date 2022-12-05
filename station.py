@@ -25,3 +25,15 @@ class API(object):
 
     def getStationInfo(self):
         return self.station_information, self.time
+
+def validLocation(lat, lon):
+    lat_nyc = 40.712700
+    lon_nyc = -74.005900
+    if (math.sqrt((lat-lat_nyc)**2 + (lon-lon_nyc)**2))*110 > 50: #50 miles within NYC
+        return False
+    else:
+        return True
+
+def main():
+    global map
+    map=googlemaps.Client(key='AIzaSyARERNNIqfgO08gpJTfAK365v7bQr9KnD4') #API key
