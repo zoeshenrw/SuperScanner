@@ -6,5 +6,5 @@ PyMySQL==1.0.2
 pywebpush==1.14.0
 requests==2.28.1
 WTForms==3.0.1
-gunicorn
+Gunicorn
 email_validator
