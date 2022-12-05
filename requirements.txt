@@ -129,3 +129,4 @@ widgetsnbextension==3.5.2
 WTForms==2.3.3
 zipp==3.6.0
 googlemaps==4.7.3
+email_validator
