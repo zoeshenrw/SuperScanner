@@ -36,7 +36,7 @@ Flask-WTF==0.14.3
 fonttools==4.29.1
 gitdb==4.0.9
 GitPython==3.1.24
-gunicorn==19.7.1
+gunicorn==latest
 htbuilder==0.5.0
 idna==3.3
 importlib-metadata==4.8.2
@@ -128,4 +128,4 @@ Werkzeug==1.0.1
 widgetsnbextension==3.5.2
 WTForms==2.3.3
 zipp==3.6.0
-googlemaps==2.4.4
+googlemaps==latest
