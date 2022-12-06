@@ -8,13 +8,12 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ec9439cfc6c796ae20295943'
                 
 #Connecting to the remote database
-conn = sql.connect(host='sql9.freesqldatabase.com',
-                   user='sql9581619',
-                   password='zYJJENMhQC',
-                   db='sql9581619',
-                   unix_socket='',
+conn = sql.connect(host='127.0.0.1',
+                   user='root',
+                   password='',
+                   db='ScannerDB',
+                   unix_socket='/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock',
                    charset='utf8mb4',
-                   cursorclass=pymysql.cursors.DictCursor
-                )
+                   cursorclass=pymysql.cursors.DictCursor)
 from register import register_bp
 app.register_blueprint(register_bp, url_prefix="/register")
