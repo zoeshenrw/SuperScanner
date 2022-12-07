@@ -1,4 +1,4 @@
-from config import app, conn
+from config import app, conn, distance, get_station_info, loc, URL_info 
 from flask import Flask, render_template, redirect, url_for, flash, request, Response, make_response, send_from_directory,session
 from pywebpush import webpush, WebPushException
 import json
@@ -6,12 +6,17 @@ from forms import LoginForm
 import cv2
 import pyzbar.pyzbar as pyzbar
 import webbrowser
-
+import requests
+import math
+global nearby_stations
+nearby_stations = get_station_info(URL_info, loc)
 #Notification
 VAPID_SUBJECT = "mailto:aml9186@nyu.edu"
 with open('private_key.json') as pk:
     data = json.load(pk)
 VAPID_PRIVATE = data["public"]
+from register import register_bp
+app.register_blueprint(register_bp, url_prefix="/register")
 
 #Scanner
 camera=cv2.VideoCapture(0)
@@ -46,6 +51,11 @@ def generate_frames():
 @app.route('/')
 @app.route('/home')
 def home_page():    
+    nearby_stations = get_station_info(URL_info, loc)
+    for station in nearby_stations:
+        name  = station['station_name']
+        capacity = station['station_capacity']
+        flash(f'Station nearby detected: location --> {name}\n There are {capacity} bikes remaining at the station', category='success')
     return render_template('home/home.html')
 
 # (B2) SERVICE WORKER
