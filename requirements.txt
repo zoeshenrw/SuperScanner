@@ -2,11 +2,12 @@ ecdsa==0.18.0
 Flask==2.2.2
 Flask_WTF==1.0.1
 geocoder==1.38.1
-googlemaps==4.7.3
+opencv_python==4.6.0.66
 PyMySQL==1.0.2
 pywebpush==1.14.0
+pyzbar==0.1.9
 requests==2.28.1
 WTForms==3.0.1
 Gunicorn
 email_validator
-opencv-python
+googlemaps==4.7.3
