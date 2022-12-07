@@ -3,9 +3,9 @@ from flask import Flask, render_template, redirect, url_for, flash, request, Res
 from pywebpush import webpush, WebPushException
 import json
 from forms import LoginForm
-# import cv2
-# import pyzbar.pyzbar as pyzbar
-# import webbrowser
+import cv2
+import pyzbar.pyzbar as pyzbar
+import webbrowser
 import requests
 import math
 
@@ -21,34 +21,34 @@ VAPID_PRIVATE = data["public"]
 from register import register_bp
 app.register_blueprint(register_bp, url_prefix="/register")
 
-# #Scanner
-# camera=cv2.VideoCapture(0)
-# global value 
-# def read_qr_code(frame):
-#     # Use cv2 to detect the QR code
-#     try:
-#         detect = cv2.QRCodeDetector()
-#         value, points, straight_qrcode = detect.detectAndDecode(frame)
-#         return value
-#     except:
-#         return None
+#Scanner
+camera=cv2.VideoCapture(0)
+global value 
+def read_qr_code(frame):
+    # Use cv2 to detect the QR code
+    try:
+        detect = cv2.QRCodeDetector()
+        value, points, straight_qrcode = detect.detectAndDecode(frame)
+        return value
+    except:
+        return None
 
-# #Read the camera frame
-# def generate_frames():
-#     while True:
-#         success,frame=camera.read()
-#         decoded=pyzbar.decode(frame)
-#         if not success:
-#             break
-#         else:
-#             value = read_qr_code(frame)
-#             #Open web browser
-#             if value:
-#                 webbrowser.open(value)
-#                 break
-#             ret,buffer=cv2.imencode('.jpg',frame)
-#             frame=buffer.tobytes()
-#         yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+#Read the camera frame
+def generate_frames():
+    while True:
+        success,frame=camera.read()
+        decoded=pyzbar.decode(frame)
+        if not success:
+            break
+        else:
+            value = read_qr_code(frame)
+            #Open web browser
+            if value:
+                webbrowser.open(value)
+                break
+            ret,buffer=cv2.imencode('.jpg',frame)
+            frame=buffer.tobytes()
+        yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 #Home page
 @app.route('/')

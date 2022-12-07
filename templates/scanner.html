@@ -18,5 +18,7 @@
     </body>
     
     <!-- The user can use the scanner once logged in -->
-    
+    {% if session.get('apple_id')%}
+    <img src="{{url_for('video')}}" width="50%" />
+    {% endif %}
 {% endblock %}
