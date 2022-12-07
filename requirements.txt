@@ -8,3 +8,4 @@ requests==2.28.1
 WTForms==3.0.1
 Gunicorn
 email_validator
+geocoder
