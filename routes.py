@@ -8,8 +8,11 @@ import pyzbar.pyzbar as pyzbar
 import webbrowser
 import requests
 import math
+
+#Getting location
 global nearby_stations
 nearby_stations = get_station_info(URL_info, loc)
+
 #Notification
 VAPID_SUBJECT = "mailto:aml9186@nyu.edu"
 with open('private_key.json') as pk:

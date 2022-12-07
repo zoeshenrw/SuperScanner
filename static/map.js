@@ -141,14 +141,14 @@ d3.json("https://gbfs.citibikenyc.com/gbfs/en/station_information.json").then(fu
       newMarker.addTo(layers[stationStatusCode]);
 
       // bind pop up
-      newMarker.bindPopup(station.name + "<br> Capacity: " + station.capacity + "<br>" + station.num_bikes_available + " Bikes Available");
+      newMarker.bindPopup(station.name + "<br> Capacity: " + station.capacity + "<br>" + 
+      station.num_bikes_available + " Classic Bikes Available" + "<br>" + station.num_ebikes_available + "Electric Bikes Available");
     }
 
     var classic = document.getElementById('classic'); 
     var electric = document.getElementById('electric');
     classic.innerHTML = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(totalCitiBike);
     electric.innerHTML = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(totalEbike); 
-
 
     updateLegend(updatedAt, stationCount);
   });
