@@ -22,7 +22,7 @@ itsdangerous
 Jinja2
 MarkupSafe
 numpy
-opencv-python
+opencv-python==4.5.5.64
 py-vapid==1.9.0
 pycparser==2.21
 PyMySQL==1.0.2
