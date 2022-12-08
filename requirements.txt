@@ -30,9 +30,9 @@ pywebpush==1.14.0
 pyzbar
 pyzbar[scripts]
 ratelim==0.1.6
-requests==2.28.1
-six==1.16.0
-urllib3==1.26.13
+requests
+six
+urllib3
 Werkzeug
 WTForms
-zipp==3.10.0
+zipp
