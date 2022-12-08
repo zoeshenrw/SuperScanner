@@ -4,7 +4,7 @@ from pywebpush import webpush, WebPushException
 import json
 from forms import LoginForm
 import cv2
-import pyzbar.pyzbar as pyzbar
+import pyzbar as pyzbar
 import webbrowser
 import requests
 import math
