@@ -96,6 +96,9 @@ d3.json("https://gbfs.citibikenyc.com/gbfs/en/station_information.json").then(fu
       OUT_OF_ORDER: 0
     };
 
+    var totalCitiBike = 0;
+    var totalEbike = 0;
+
     var stationStatusCode;
     // Loop through the stations (they're the same size and have partially matching data).
     for (var i = 0; i < stationInfo.length; i++) {
@@ -118,10 +121,14 @@ d3.json("https://gbfs.citibikenyc.com/gbfs/en/station_information.json").then(fu
       // If a station has less than five bikes, it's status is low.
       else if (station.num_bikes_available < 5) {
         stationStatusCode = "LOW";
+        totalCitiBike += station.num_bikes_available; 
+        totalEbike += station.num_ebikes_available;
       }
       // Otherwise, the station is normal.
       else {
         stationStatusCode = "NORMAL";
+        totalCitiBike += station.num_bikes_available; 
+        totalEbike += station.num_ebikes_available;
       }
 
       // Update the station count.
@@ -134,12 +141,19 @@ d3.json("https://gbfs.citibikenyc.com/gbfs/en/station_information.json").then(fu
       newMarker.addTo(layers[stationStatusCode]);
 
       // bind pop up
-      newMarker.bindPopup(station.name + "<br> Capacity: " + station.capacity + "<br>" + station.num_bikes_available + " Bikes Available");
+      newMarker.bindPopup(station.name + "<br> Capacity: " + station.capacity + "<br>" + 
+      station.num_bikes_available + " Classic Bikes Available" + "<br>" + station.num_ebikes_available + " Electric Bikes Available");
     }
+
+    var classic = document.getElementById('classic'); 
+    var electric = document.getElementById('electric');
+    classic.innerHTML = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(totalCitiBike);
+    electric.innerHTML = new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(totalEbike); 
 
     updateLegend(updatedAt, stationCount);
   });
 });
+
 
 // Updating
 function updateLegend(time, stationCount) {

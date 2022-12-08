@@ -37,3 +37,15 @@ body,
 .legend .out-of-order {
   color: #00008B;
 }
+
+#classic {
+  font-weight: 700;
+  font-size: 22px;
+  font-family: Georgia;
+}
+
+#electric {
+  font-weight: 700;
+  font-size: 22px;
+  font-family: Georgia;
+}

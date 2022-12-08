@@ -9,7 +9,7 @@
 <body class="text-center">
     <div class="container">
         <img src="/static/smallerlogo.png" alt="Logo" style="height: 10%; width: 10%; padding: 10px;">
-        <br></br>
+        <br>
         <h1 style="color: #FB8500; font-family: Georgia, serif; font-size: xx-large; font-weight: bold;">Map</h1>
         <p style="text-align: center; color:white; font-family:Georgia, serif; font-size:larger; margin: 50px;"> 
             This is a map on Citibike stations in New York City<br>
@@ -54,6 +54,23 @@ crossorigin=""/>
 <link rel="stylesheet" href="static/leaflet.extra-markers.min.css">
 <link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
+
+
+<div class="row m-0 d-flex justify-content-between"> 
+    <div class="col-6 text-center p-0">
+    <div class="box p-2">
+    <p style="color:white; font-family:Georgia, serif;font-size: 22px;">Available Classic Bikes</p> 
+     <span id="classic" class="center"></span> 
+    </div>
+  </div>
+
+    <div class="col-6 text-center p-0">
+    <div class="box p-2">
+    <p style="color:white; font-family:Georgia, serif;font-size: 22px;">Available Electric Bikes </p> 
+    <span id="electric" class="center"></span>
+    </div>
+  </div>
+</div>
 
 <!-- Connecting to JS for the map -->
 <body class="text-center">
