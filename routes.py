@@ -1,11 +1,11 @@
 from config import app, conn, distance, get_station_info, loc, URL_info 
-from flask import Flask, render_template, redirect, url_for, flash, request, Response, make_response, send_from_directory,session
+from flask import Flask, render_template, redirect, url_for, flash, request, Response, make_response, send_from_directory,session, Markup
 from pywebpush import webpush, WebPushException
 import json
 from forms import LoginForm
-# import cv2
-# import pyzbar.pyzbar as pyzbar
-# import webbrowser
+#import cv2
+#import pyzbar.pyzbar as pyzbar
+import webbrowser
 import requests
 import math
 
@@ -13,15 +13,15 @@ import math
 global nearby_stations
 nearby_stations = get_station_info(URL_info, loc)
 
-#Notification
-VAPID_SUBJECT = "mailto:aml9186@nyu.edu"
-with open('private_key.json') as pk:
-    data = json.load(pk)
-VAPID_PRIVATE = data["public"]
-from register import register_bp
-app.register_blueprint(register_bp, url_prefix="/register")
+# #Notification
+# VAPID_SUBJECT = "mailto:aml9186@nyu.edu"
+# with open('private_key.json') as pk:
+#     data = json.load(pk)
+# VAPID_PRIVATE = data["public"]
+# from register import register_bp
+# app.register_blueprint(register_bp, url_prefix="/register")
 
-#Scanner
+# #Scanner
 # camera=cv2.VideoCapture(0)
 # global value 
 # def read_qr_code(frame):
@@ -66,33 +66,27 @@ def notif_page():
     
     return render_template('notif.html')
 
-# (B2) SERVICE WORKER
-@app.route("/sw.js")
-def sw():
-  response = make_response(send_from_directory(app.static_folder, "sw.js"))
-  return response
-
-#call this from a route when a nearby bike is found, and return the data to user as a push notification in json format
-@app.route("/push", methods=["POST"])
-def push():
-  sub = json.loads(request.form["sub"])
-  result = "OK"
-  try:
-    webpush(
-      subscription_info = sub,
-      data = json.dumps({
-        "title" : "Welcome!",
-        "body" : "Yes, it works!",
-        "icon" : "static/bikes.png",
-        "image" : "static/card.png"
-      }),
-      vapid_private_key = VAPID_PRIVATE,
-      vapid_claims = { "sub": VAPID_SUBJECT }
-    )
-  except WebPushException as ex:
-    print(ex)
-    result = "FAILED"
-  return result
+# #call this from a route when a nearby bike is found, and return the data to user as a push notification in json format
+# @app.route("/push", methods=["POST"])
+# def push():
+#   sub = json.loads(request.form["sub"])
+#   result = "OK"
+#   try:
+#     webpush(
+#       subscription_info = sub,
+#       data = json.dumps({
+#         "title" : "Welcome!",
+#         "body" : "Yes, it works!",
+#         "icon" : "static/bikes.png",
+#         "image" : "static/card.png"
+#       }),
+#       vapid_private_key = VAPID_PRIVATE,
+#       vapid_claims = { "sub": VAPID_SUBJECT }
+#     )
+#   except WebPushException as ex:
+#     print(ex)
+#     result = "FAILED"
+#   return result
 
 #About page
 @app.route('/about')
@@ -114,24 +108,24 @@ def market_page():
 def map_page():
     return render_template('map.html')
 
-#Scanner page
-@app.route('/scanner')
-def scanner_page():
-    return render_template('scanner.html')
+# #Scanner page
+# @app.route('/scanner')
+# def scanner_page():
+#     return render_template('scanner.html')
 
-@app.route('/scanned')
-def scanned_page():  
-    try:  
-        return redirect(value)
-    except:
-        return redirect(url_for("video"))
+# @app.route('/scanned')
+# def scanned_page():  
+#     try:  
+#         return redirect(value)
+#     except:
+#         return redirect(url_for("video"))
 
-@app.route('/video',methods=['GET'])
-def video():
-    try: 
-        return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
-    except:
-        return redirect(url_for("scanned_page"))
+# @app.route('/video',methods=['GET'])
+# def video():
+#     try: 
+#         return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
+#     except:
+#         return redirect(url_for("scanned_page"))
 
 #Login page
 @app.route('/login', methods=['GET', 'POST'])

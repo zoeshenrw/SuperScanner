@@ -7,14 +7,14 @@ global URL_info
 global loc 
 import math
 import requests
-
+#from register import register_bp
 #Connecting to API
 loc = geo.ip('me').latlng
 URL_info = 'https://gbfs.citibikenyc.com/gbfs/en/station_information.json'
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ec9439cfc6c796ae20295943'
-                
+   
 #Connecting to the remote database
 conn = sql.connect(host='sql.freedb.tech',
                    user='freedb_nyudb',
@@ -27,7 +27,7 @@ conn = sql.connect(host='sql.freedb.tech',
 
 #Getting location.
 geolocation = geo.ip('me')
-
+   
 #lat and long distance
 def distance(origin, destination):
     lat1, lon1 = origin
@@ -52,5 +52,7 @@ def get_station_info(url, cur_loc):
       station_lon = station['lon']
       station_capacity = station['capacity']
       if int(station_capacity)>=1 and distance(cur_loc, (station_lat, station_lon)) < 0.5:
-         nearby_stations.append({"station_name":station_name,  "station_capacity":station_capacity})
+         nearby_stations.append({"station_name":station_name,  "station_capacity":station_capacity, "station_lat":station_lat, "station_lon":station_lon})
    return nearby_stations
+
+   
