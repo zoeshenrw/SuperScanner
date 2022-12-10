@@ -3,8 +3,8 @@ from flask import Flask, render_template, redirect, url_for, flash, request, Res
 from pywebpush import webpush, WebPushException
 import json
 from forms import LoginForm
-#import cv2
-#import pyzbar.pyzbar as pyzbar
+import cv2
+import pyzbar.pyzbar as pyzbar
 import webbrowser
 import requests
 import math
