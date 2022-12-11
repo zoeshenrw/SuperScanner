@@ -56,6 +56,7 @@ nearby_stations = get_station_info(URL_info, loc)
 def home_page():    
     return render_template('home/home.html')
 
+# Sending notifications on nearby stations with link to google map.
 @app.route('/notif')
 def notif_page():
     nearby_stations = get_station_info(URL_info, loc)
@@ -64,9 +65,8 @@ def notif_page():
         capacity = station['station_capacity']
         lat, lon = station['station_lat'], station['station_lon']
         flash(Markup(f'Station nearby detected: location --> {name}. There are {capacity} bikes remaining at the station. For Directions click <a href="https://www.google.com/maps/search/?api=1&query={lat},{lon}" class="alert-link">here</a>'), category='success')
-    
     return render_template('notif.html')
-#Markup('Successfully registered, please click <a href="/me" class="alert-link">here</a>')
+
 # #call this from a route when a nearby bike is found, and return the data to user as a push notification in json format
 # @app.route("/push", methods=["POST"])
 # def push():
