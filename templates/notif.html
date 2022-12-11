@@ -5,9 +5,15 @@
 
 {% block content %}
     <body class="text-center">
-        {% for mesg in get_flashed_messages() %}
-            <h1>{{ mesg }}</h1>
-        {% endfor %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                 <ul class="flashes">
+                    {% for message in messages %}
+                        <div class="message_flash">{{ message }}</div>
+                     {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
     </body>
 
 {% endblock %}
