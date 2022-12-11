@@ -150,7 +150,7 @@ def login_page():
             session['apple_id'] = apple_id
             return redirect(url_for('home_page'))
         else:
-            flash('AppleID and password are not a match! Please try again', category='danger')
+            flash(f'AppleID and password are not a match! Please try again', category='danger')
 
     return render_template('login.html', form=form)
 
