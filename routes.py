@@ -63,8 +63,7 @@ def notif_page():
         name  = station['station_name']
         capacity = station['station_capacity']
         lat, lon = station['station_lat'], station['station_lon']
-        flash(Markup(f'Station nearby detected: location --> {name}.There are {capacity} bikes remaining at the station. For Directions click <a href="https://www.google.com/maps/search/?api=1&query={lat},{lon}" class="alert-link">here</a>'), category='success')
-        #flash(f'Station nearby detected: location --> {name}\n . There are {capacity} bikes remaining at the station', category='success')
+        flash(Markup(f'Station nearby detected: location --> {name}. There are {capacity} bikes remaining at the station. For Directions click <a href="https://www.google.com/maps/search/?api=1&query={lat},{lon}" class="alert-link">here</a>'), category='success')
     
     return render_template('notif.html')
 #Markup('Successfully registered, please click <a href="/me" class="alert-link">here</a>')
