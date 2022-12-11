@@ -1,5 +1,5 @@
 from flask import request, render_template, flash, redirect, url_for, Blueprint
-from config import conn,app
+from config import conn
 from forms import RegisterForm
 
 register_bp = Blueprint("register", __name__, static_folder="static", template_folder="templates")
