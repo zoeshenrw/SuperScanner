@@ -8,6 +8,7 @@ from forms import LoginForm
 import webbrowser
 import requests
 import math
+import geocoder as geo
 
 #Getting location
 global nearby_stations
@@ -59,17 +60,26 @@ def home_page():
 # Sending notifications on nearby stations with link to google map.
 @app.route('/notif')
 def notif_page():
+    loc = geo.ip('me').latlng
     nearby_stations = get_station_info(URL_info, loc)
-    if len(nearby_stations) == 0:
-        loc = ['40.7309', '73.9973']
+    if len(nearby_stations) == 0:   
+        loc = 40.725380, -73.991860
         nearby_stations = get_station_info(URL_info, loc)
+        print(nearby_stations)
+        for station in nearby_stations:
+            name  = station['station_name']
+            capacity = station['station_capacity']
+            lat, lon = station['station_lat'], station['station_lon']
+            print(station)
+            flash(Markup(f'Station nearby detected: location --> {name}. There are {capacity} bikes remaining at the station. For Directions click <a href="https://www.google.com/maps/search/?api=1&query={lat},{lon}" class="alert-link">here</a>'), category='success')
         #flash(Markup(f'No stations nearby. Please try again later at location {loc}.'), category='danger')
-    for station in nearby_stations:
-        name  = station['station_name']
-        capacity = station['station_capacity']
-        lat, lon = station['station_lat'], station['station_lon']
-        print(station)
-        flash(Markup(f'Station nearby detected: location --> {name}. There are {capacity} bikes remaining at the station. For Directions click <a href="https://www.google.com/maps/search/?api=1&query={lat},{lon}" class="alert-link">here</a>'), category='success')
+    else:
+        for station in nearby_stations:
+            name  = station['station_name']
+            capacity = station['station_capacity']
+            lat, lon = station['station_lat'], station['station_lon']
+            print(station)
+            flash(Markup(f'Station nearby detected: location --> {name}. There are {capacity} bikes remaining at the station. For Directions click <a href="https://www.google.com/maps/search/?api=1&query={lat},{lon}" class="alert-link">here</a>'), category='success')
     return render_template('notif.html')
 
 # #call this from a route when a nearby bike is found, and return the data to user as a push notification in json format
