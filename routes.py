@@ -60,6 +60,8 @@ def home_page():
 @app.route('/notif')
 def notif_page():
     nearby_stations = get_station_info(URL_info, loc)
+    if len(nearby_stations) == 0:
+        flash(Markup(f'No stations nearby. Please try again later at location {loc}.'), category='danger')
     for station in nearby_stations:
         name  = station['station_name']
         capacity = station['station_capacity']
