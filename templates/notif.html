@@ -4,16 +4,6 @@
 {% endblock %}
 
 {% block content %}
-    <body class="text-center">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul class=flashes>
-                    {% for message in messages %}
-                        <li>{{ message | safe }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-    </body>
+    
 
 {% endblock %}

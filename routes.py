@@ -64,6 +64,7 @@ def notif_page():
         name  = station['station_name']
         capacity = station['station_capacity']
         lat, lon = station['station_lat'], station['station_lon']
+        print(station)
         flash(Markup(f'Station nearby detected: location --> {name}. There are {capacity} bikes remaining at the station. For Directions click <a href="https://www.google.com/maps/search/?api=1&query={lat},{lon}" class="alert-link">here</a>'), category='success')
     return render_template('notif.html')
 
@@ -71,7 +72,7 @@ def notif_page():
 # @app.route("/push", methods=["POST"])
 # def push():
 #   sub = json.loads(request.form["sub"])
-#   result = "OK"
+#   result = "OK"s
 #   try:
 #     webpush(
 #       subscription_info = sub,
