@@ -8,6 +8,7 @@ global loc
 import math
 import requests
 # from register import register_bp
+
 #Connecting to API
 loc = geo.ip('me').latlng
 URL_info = 'https://gbfs.citibikenyc.com/gbfs/en/station_information.json'
