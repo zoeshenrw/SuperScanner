@@ -5,7 +5,7 @@ import json
 from forms import LoginForm
 #import cv2
 #import pyzbar.pyzbar as pyzbar
-import webbrowser
+#import webbrowser
 import requests
 import math
 import geocoder as geo

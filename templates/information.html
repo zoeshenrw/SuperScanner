@@ -17,7 +17,7 @@
     </body>
 
     <!-- Clickable maps with embedded HTMLs on each bike companies in different states in the US. -->
-    {% if session.get('apple_id')%}
+    
     <iframe src="https://createaclickablemap.com/map.php?&id=114646&maplocation=false&online=true" width="900" height="525" style="border: none;"></iframe>
     <script>if (window.addEventListener){ window.addEventListener("message", function(event) { 
         if(event.data.length >= 22) { 
@@ -69,6 +69,6 @@
             text-decoration: none;
         } 
         </style><ul class="map">
-        {% endif %}
+        
 
  {% endblock %}
